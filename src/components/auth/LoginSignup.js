@@ -23,7 +23,6 @@ const LoginSignup = () => {
         setError('');
         setLoading(true);
 
-        // Validate password confirmation for signup
         if (!isLogin && password !== confirmPassword) {
             setError('Passwords do not match');
             setLoading(false);
@@ -32,13 +31,10 @@ const LoginSignup = () => {
 
         try {
             if (isLogin) {
-                // Login
                 await signInWithEmailAndPassword(auth, email, password);
             } else {
-                // Signup
                 await createUserWithEmailAndPassword(auth, email, password);
             }
-            // Redirect to dashboard after successful auth
             navigate('/dashboard');
         } catch (error) {
             setError(error.message);
@@ -54,7 +50,6 @@ const LoginSignup = () => {
         try {
             const provider = new GoogleAuthProvider();
             await signInWithPopup(auth, provider);
-            // Redirect to dashboard after successful Google auth
             navigate('/dashboard');
         } catch (error) {
             setError(error.message);
@@ -74,7 +69,7 @@ const LoginSignup = () => {
     return (
         <div className="auth-container">
             <div className="auth-card">
-                <h2>{isLogin ? 'Login' : 'Sign Up'}</h2>
+                <h2>{isLogin ? 'Login' : 'Create Account'}</h2>
 
                 {error && <div className="error-message">{error}</div>}
 
@@ -87,7 +82,7 @@ const LoginSignup = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            placeholder="Enter your email"
+                            placeholder="you@example.com"
                         />
                     </div>
 
@@ -99,7 +94,7 @@ const LoginSignup = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            placeholder="Enter your password"
+                            placeholder="••••••••"
                             minLength={6}
                         />
                     </div>
@@ -113,7 +108,7 @@ const LoginSignup = () => {
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
-                                placeholder="Confirm your password"
+                                placeholder="••••••••"
                                 minLength={6}
                             />
                         </div>
@@ -124,13 +119,11 @@ const LoginSignup = () => {
                         className="auth-button"
                         disabled={loading}
                     >
-                        {loading ? 'Processing...' : (isLogin ? 'Login' : 'Sign Up')}
+                        {loading ? 'Processing...' : isLogin ? 'Login' : 'Sign Up'}
                     </button>
                 </form>
 
-                <div className="divider">
-                    <span>OR</span>
-                </div>
+                <div className="divider"><span>OR</span></div>
 
                 <button
                     type="button"
@@ -149,7 +142,9 @@ const LoginSignup = () => {
 
                 <div className="auth-toggle">
                     <p>
-                        {isLogin ? "Don't have an account? " : "Already have an account? "}
+                        {isLogin
+                            ? "Don't have an account?"
+                            : "Already have an account?"}
                         <button
                             type="button"
                             onClick={toggleMode}
@@ -164,4 +159,4 @@ const LoginSignup = () => {
     );
 };
 
-export default LoginSignup; 
+export default LoginSignup;

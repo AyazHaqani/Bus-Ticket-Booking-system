@@ -36,7 +36,7 @@ const Dashboard = () => {
                     <div className="header-content">
                         <h1>Bus Ticket Booking</h1>
                         <div className="user-info">
-                            <span>Welcome, {currentUser?.email}</span>
+                            <span>Welcome nigga,</span>
                             <ThemeToggle />
                             <button onClick={handleBackToDashboard} className="back-button">
                                 ← Back to Dashboard
