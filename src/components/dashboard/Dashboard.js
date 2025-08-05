@@ -4,6 +4,7 @@ import { auth } from '../../firebase/config';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import BookingSystem from '../booking/BookingSystem';
+import ThemeToggle from '../ThemeToggle';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -36,6 +37,7 @@ const Dashboard = () => {
                         <h1>Bus Ticket Booking</h1>
                         <div className="user-info">
                             <span>Welcome, {currentUser?.email}</span>
+                            <ThemeToggle />
                             <button onClick={handleBackToDashboard} className="back-button">
                                 ← Back to Dashboard
                             </button>
@@ -55,15 +57,16 @@ const Dashboard = () => {
     return (
         <div className="dashboard-container">
             <header className="dashboard-header">
-                <div className="header-content">
-                    <h1>Pakistan Bus Ticket System</h1>
-                    <div className="user-info">
-                        <span>Welcome, {currentUser?.email}</span>
-                        <button onClick={handleLogout} className="logout-button">
-                            Logout
-                        </button>
+                    <div className="header-content">
+                        <h1>Pakistan Bus Ticket System</h1>
+                        <div className="user-info">
+                            <span>Welcome, {currentUser?.email}</span>
+                            <ThemeToggle />
+                            <button onClick={handleLogout} className="logout-button">
+                                Logout
+                            </button>
+                        </div>
                     </div>
-                </div>
             </header>
 
             <main className="dashboard-main">
